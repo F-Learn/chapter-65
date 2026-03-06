@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oncologic/Degenerative Neurologic – Chapter 65 Exam</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(145deg, #5d6f82, #8fa3b8);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(145deg, #435569, #6b85a0);
+            color: white;
+            padding: 20px 30px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 4px solid #2d3b4b;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        .counter {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 100px;
+            text-align: center;
+            white-space: nowrap;
+            margin-left: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #cddae8;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #6b85a0, #435569);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 30px;
+            background: #e7eef5;
+        }
+        
+        .question-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 3px solid #b1c5db;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .question-header {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            background: linear-gradient(145deg, #6b85a0, #435569);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(67,85,105,0.4);
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: #2d3b4b;
+            flex-grow: 1;
+            font-weight: 600;
+            padding-right: 15px;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            padding: 20px;
+            border: 3px solid #b1c5db;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .option:hover {
+            background: #d1e0f0;
+            border-color: #6b85a0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(107,133,160,0.15);
+        }
+        
+        .option-letter {
+            background: linear-gradient(145deg, #6b85a0, #435569);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            border: 3px solid #435569;
+        }
+        
+        .option.correct {
+            background: linear-gradient(145deg, #66bb6a, #43a047);
+            border-color: #43a047;
+            color: white;
+        }
+        
+        .option.correct .option-letter {
+            background: #43a047;
+            color: white;
+            border-color: #388e3c;
+        }
+        
+        .option.incorrect {
+            background: linear-gradient(145deg, #ef5350, #e53935);
+            border-color: #e53935;
+            color: white;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #e53935;
+            color: white;
+            border-color: #d32f2f;
+        }
+        
+        .feedback-area {
+            flex-shrink: 0;
+        }
+        
+        .feedback {
+            padding: 25px;
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            gap: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            animation: slideIn 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+            border: 3px solid #43a047;
+            color: #1b5e20;
+            display: flex;
+        }
+        
+        .feedback.incorrect {
+            background: linear-gradient(145deg, #ffcdd2, #ef9a9a);
+            border: 3px solid #e53935;
+            color: #b71c1c;
+            display: flex;
+        }
+        
+        .feedback-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .rationale {
+            background: linear-gradient(145deg, #daebf5, #c7dbe9);
+            border: 3px solid #5d6f82;
+            border-radius: 15px;
+            padding: 25px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .rationale.show {
+            display: block;
+        }
+        
+        .rationale h4 {
+            color: #435569;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .rationale p {
+            color: #2d3b4b;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #b1c5db;
+            border-top: 3px solid #95afc9;
+            flex-shrink: 0;
+            height: 80px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(145deg, #6b85a0, #435569);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67,85,105,0.4);
+            background: linear-gradient(145deg, #435569, #2d3b4b);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(145deg, #90a4ae, #607d8b);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(96,125,139,0.4);
+            background: linear-gradient(145deg, #607d8b, #455a64);
+        }
+        
+        .btn-cancel {
+            background: linear-gradient(145deg, #ef5350, #e53935);
+            color: white;
+            display: none;
+        }
+        
+        .btn-cancel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229,57,53,0.4);
+            background: linear-gradient(145deg, #e53935, #c62828);
+        }
+        
+        .btn-cancel.show {
+            display: flex;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                height: 75px;
+                padding: 15px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 15px;
+                font-size: 1.05rem;
+                gap: 15px;
+            }
+            
+            .option-letter {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .question-area {
+                padding: 20px;
+            }
+            
+            .navigation {
+                padding: 15px 20px;
+                height: 70px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .nav-buttons {
+                gap: 10px;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .header {
+                height: 70px;
+                padding: 15px 20px;
+            }
+            
+            .question-area {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-content">
+            <h1>🧠 Oncologic/Degenerative Neurologic Disorders (Chapter 65)</h1>
+            <div class="subtitle">39 NCLEX-style questions with rationales</div>
+        </div>
+        <div class="counter" id="counter">1/39</div>
+    </div>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div class="main-content">
+        <div class="question-area">
+            <div class="question-header">
+                <div class="question-number" id="questionNumber">1</div>
+                <div class="question-text" id="question"></div>
+            </div>
+            
+            <div class="options-container" id="options"></div>
+        </div>
+        
+        <div class="feedback-area">
+            <div class="feedback" id="feedback">
+                <div class="feedback-icon" id="feedbackIcon"></div>
+                <div id="feedbackText"></div>
+            </div>
+            <div class="rationale" id="rationale">
+                <h4>📘 RATIONALE:</h4>
+                <p id="rationaleText"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()">
+            ⬅️ Previous
+        </button>
+        <div class="nav-buttons">
+            <button class="btn btn-cancel" id="cancelBtn" onclick="cancelSelection()">
+                ❌ Cancel
+            </button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">
+                Next ➡️
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chapter 65: Management of Patients with Oncologic or Degenerative Neurologic Disorders – 39 questions (exact from document)
+    const questions = [
+        {
+            id: 1,
+            question: "1. A nurse is assessing a client with an acoustic neuroma who has been recently admitted to an oncology unit. What symptoms is the nurse likely to find during the initial assessment?",
+            options: [
+                "A. Loss of hearing, tinnitus, and vertigo",
+                "B. Loss of vision, change in mental status, and hyperthermia",
+                "C. Loss of hearing, increased sodium retention, and hypertension",
+                "D. Loss of vision, headache, and tachycardia"
+            ],
+            correct: 0, // A
+            rationale: "An acoustic neuroma is a tumor of the eighth cranial nerve, the cranial nerve most responsible for hearing and balance. The client with an acoustic neuroma usually experiences loss of hearing, tinnitus, and episodes of vertigo and staggering gait. Acoustic neuromas do not cause loss of vision, increased sodium retention, or tachycardia. (PTS:1 REF:p.2115)"
+        },
+        {
+            id: 2,
+            question: "2. A 25-year-old client with brain metastases is considering life expectancy after the client's most recent meeting with her oncologist. Based on the fact that the client is not receiving treatment for the brain metastases, what is the nurse's most appropriate action?",
+            options: [
+                "A. Promoting the client's functional status and ADLs",
+                "B. Ensuring that the client receives adequate palliative care",
+                "C. Ensuring that the family does not tell the client that the condition is terminal",
+                "D. Promoting adherence to the prescribed medication regimen"
+            ],
+            correct: 1, // B
+            rationale: "Clients with intracerebral metastases who are not treated have a steady downhill course with a limited survival time, whereas those who are treated may survive for slightly longer periods, but for most cure is not possible. Palliative care is thus necessary. This is a priority over promotion of function and the family should not normally withhold information from the client. Adherence to medications such as analgesics is important, but palliative care is a high priority. (PTS:1 REF:p.2118)"
+        },
+        {
+            id: 3,
+            question: "3. The nurse is writing a care plan for a client with brain metastases. The nurse decides that an appropriate nursing diagnosis is 'anxiety related to lack of control over the health circumstances.' In establishing this plan of care for the client, the nurse should include which intervention?",
+            options: [
+                "A. Antianxiety medications every 4 hours",
+                "B. Family instruction on planning the client's care",
+                "C. Encouragement to verbalize concerns related to the disease and its treatment",
+                "D. Intensive therapy with the goal of distraction"
+            ],
+            correct: 2, // C
+            rationale: "Clients need the opportunity to exercise some control over their situation. A sense of mastery can be gained as they learn to understand the disease and its treatment and how to deal with their feelings. Distraction and administering medications will not allow the client to gain control over anxiety. Delegating planning to the family will not help the client gain a sense of control and autonomy. (PTS:1 REF:p.2121)"
+        },
+        {
+            id: 4,
+            question: "4. The clinic nurse caring for a client with Parkinson disease notes that the client has been taking levodopa and carbidopa (Sinemet) for 7 years. For what common side effect should the nurse assess this client?",
+            options: [
+                "A. Pruritus",
+                "B. Dyskinesia",
+                "C. Lactose intolerance",
+                "D. Diarrhea"
+            ],
+            correct: 1, // B
+            rationale: "Within 5 to 10 years of taking levodopa, most clients develop a response to the medication characterized by dyskinesia (abnormal involuntary movements). Another potential complication of long-term dopaminergic medication use is neuroleptic malignant syndrome characterized by severe rigidity, stupor, and hyperthermia. Side effects of long-term Sinemet therapy are not pruritus, lactose intolerance, or diarrhea. (PTS:1 REF:p.2124)"
+        },
+        {
+            id: 5,
+            question: "5. The nurse is caring for a boy who has muscular dystrophy. When planning assistance with the client's ADLs, what goal should the nurse prioritize?",
+            options: [
+                "A. Promoting the client's recovery from the disease",
+                "B. Maximizing the client's level of function",
+                "C. Ensuring the client's adherence to treatment",
+                "D. Fostering the family's participation in care"
+            ],
+            correct: 1, // B
+            rationale: "Priority for the care of the child with muscular dystrophy is the need to maximize the client's level of function. Family participation is also important, but should be guided by this goal. Adherence is not a central goal, even though it is highly beneficial, and the disease is not curable. (PTS:1 REF:p.2132)"
+        },
+        {
+            id: 6,
+            question: "6. A 37-year-old client is brought to the clinic by the spouse because the client is experiencing loss of motor function and sensation. The health care provider suspects the client has a spinal cord tumor and hospitalizes the client for diagnostic testing. In light of the need to rule out spinal cord compression from a tumor, the nurse will most likely prepare the client for what test?",
+            options: [
+                "A. Anterior-posterior x-ray",
+                "B. Ultrasound",
+                "C. Lumbar puncture",
+                "D. MRI"
+            ],
+            correct: 3, // D
+            rationale: "The MRI scan is the most commonly used diagnostic procedure. It is the most sensitive diagnostic tool that is particularly helpful in detecting epidural spinal cord compression and vertebral bone metastases. (PTS:1 REF:p.2116)"
+        },
+        {
+            id: 7,
+            question: "7. A client with Parkinson disease is undergoing a swallowing assessment because the client has recently developed adventitious lung sounds. The client's nutritional needs should be met by what method?",
+            options: [
+                "A. Total parenteral nutrition (TPN)",
+                "B. Provision of a low-residue diet",
+                "C. Semisolid food with thick liquids",
+                "D. Minced foods and a fluid restriction"
+            ],
+            correct: 2, // C
+            rationale: "A semisolid diet with thick liquids is easier for a client with swallowing difficulties to consume than is a solid diet. Low-residue foods and fluid restriction are unnecessary and counterproductive to the client's nutritional status. The client's status does not warrant TPN until all other options have been ruled out. (PTS:1 REF:p.2127)"
+        },
+        {
+            id: 8,
+            question: "8. A client, diagnosed with cancer of the lung, has just been told the cancer has metastasized to the brain. What change in health status would the nurse attribute to the client's metastatic brain disease?",
+            options: [
+                "A. Chronic pain",
+                "B. Respiratory distress",
+                "C. Fixed pupils",
+                "D. Personality changes"
+            ],
+            correct: 3, // D
+            rationale: "Neurologic signs and symptoms include headache, gait disturbances, visual impairment, personality changes, altered mentation (memory loss and confusion), focal weakness, paralysis, aphasia, and seizures. Pain, respiratory distress, and fixed pupils are not among the more common neurologic signs and symptoms of metastatic brain disease. (PTS:1 REF:p.2118)"
+        },
+        {
+            id: 9,
+            question: "9. A client has just been diagnosed with Parkinson disease and the nurse is planning the client's subsequent care for the home setting. What nursing diagnosis should the nurse address when educating the client's family?",
+            options: [
+                "A. Risk for infection",
+                "B. Impaired spontaneous ventilation",
+                "C. Unilateral neglect",
+                "D. Risk for injury"
+            ],
+            correct: 3, // D
+            rationale: "Individuals with Parkinson disease face a significant risk for injury related to the effects of dyskinesia. Unilateral neglect is not characteristic of the disease, which affects both sides of the body. Parkinson disease does not directly constitute a risk for infection or impaired respiration. (PTS:1 REF:p.2124)"
+        },
+        {
+            id: 10,
+            question: "10. The nurse is caring for a client with Huntington disease who has been admitted to the hospital for treatment of malnutrition. What independent nursing action should be implemented in the client's plan of care?",
+            options: [
+                "A. Firmly redirect the client's head when feeding.",
+                "B. Administer phenothiazines after each meal as prescribed.",
+                "C. Encourage the client to keep his or her feeding area clean.",
+                "D. Apply deep, gentle pressure around the client's mouth to aid swallowing."
+            ],
+            correct: 3, // D
+            rationale: "Nursing interventions for a client who has inadequate nutritional intake should include the following: apply deep gentle pressure around the client's mouth to assist with swallowing, and administer phenothiazines prior to the client's meal as prescribed. The nurse should disregard the mess of the feeding area and treat the person with dignity. Stiffness and turning away by the client during feeding are uncontrollable choreiform movements and should not be interrupted. (PTS:1 REF:p.2130)"
+        },
+        {
+            id: 11,
+            question: "11. A client has been admitted to the neurologic unit for the treatment of a newly diagnosed brain tumor. The client has just exhibited seizure activity for the first time. What is the nurse's priority response to this event?",
+            options: [
+                "A. Identify the triggers that precipitated the seizure.",
+                "B. Implement precautions to ensure the client's safety.",
+                "C. Teach the client's family about the relationship between brain tumors and seizure activity.",
+                "D. Ensure that the client is housed in a private room."
+            ],
+            correct: 1, // B
+            rationale: "Clients with seizures are carefully monitored and protected from injury. Client safety is a priority over health education, even though this is appropriate and necessary. Specific triggers may or may not be evident; identifying these are not the highest priority. A private room is preferable, but not absolutely necessary. (PTS:1 REF:p.2118)"
+        },
+        {
+            id: 12,
+            question: "12. A client diagnosed with a pituitary adenoma has arrived on the neurologic unit. When planning the client's care, the nurse should be aware that the effects of the tumor will primarily depend on what variable?",
+            options: [
+                "A. Whether the tumor utilizes aerobic or anaerobic respiration",
+                "B. The specific hormones secreted by the tumor",
+                "C. The client's pre-existing health status",
+                "D. Whether the tumor is primary or the result of metastasis"
+            ],
+            correct: 1, // B
+            rationale: "Functioning pituitary tumors can produce one or more hormones normally produced by the anterior pituitary and the effects of the tumor depend largely on the identity of these hormones. This variable is more significant than the client's health status or whether the tumor is primary versus secondary. Anaerobic and aerobic respiration are not relevant. (PTS:1 REF:p.2114)"
+        },
+        {
+            id: 13,
+            question: "13. A client with a metastatic brain tumor of the frontal lobe experiences a generalized seizure for the first time. The nurse should prepare for what action?",
+            options: [
+                "A. Intubation",
+                "B. STAT computed tomography (CT) health care provider",
+                "C. A STAT MRI",
+                "D. Administration of anticonvulsants"
+            ],
+            correct: 3, // D
+            rationale: "Seizure activity necessitates anticonvulsants. In most cases, the development of seizure activity does not require immediate diagnostic imaging. Intubation is unnecessary except in cases of respiratory failure. (PTS:1 REF:p.2115)"
+        },
+        {
+            id: 14,
+            question: "14. The nurse in an extended care facility is planning the daily activities of a client with post-polio syndrome. The nurse recognizes the client will best benefit from physical therapy when it is scheduled at what time?",
+            options: [
+                "A. Immediately after meals",
+                "B. In the morning",
+                "C. Before bedtime",
+                "D. In the early evening"
+            ],
+            correct: 1, // B
+            rationale: "Important activities for clients with post-polio syndrome should be planned for the morning, as fatigue often increases in the afternoon and evening. (PTS:1 REF:p.2139)"
+        },
+        {
+            id: 15,
+            question: "15. A client newly diagnosed with a cervical disk herniation is receiving health education from the clinic nurse. What conservative management measures should the nurse teach the client to implement?",
+            options: [
+                "A. Perform active ROM exercises three times daily.",
+                "B. Sleep on a firm mattress.",
+                "C. Apply cool compresses to the back of the neck daily.",
+                "D. Wear the cervical collar for at least 2 hours at a time."
+            ],
+            correct: 1, // B
+            rationale: "Proper positioning on a firm mattress and bed rest for 1 to 2 days may bring dramatic relief from pain. The client may need to wear a cervical collar 24 hours a day during the acute phase of pain from a cervical disc herniation. Hot, moist compresses applied to the back of the neck will increase blood flow to the muscles and help relax the spastic muscles. (PTS:1 REF:p.2135)"
+        },
+        {
+            id: 16,
+            question: "16. A client has just returned to the unit from the PACU after surgery for a tumor within the spine. The client reports pain. When positioning the client for comfort and to reduce injury to the surgical site, the nurse will position to client in what position?",
+            options: [
+                "A. In the high Fowler position",
+                "B. In a flat side-lying position",
+                "C. In the Trendelenburg position",
+                "D. In the reverse Trendelenburg position"
+            ],
+            correct: 1, // B
+            rationale: "After spinal surgery, the bed is usually kept flat initially. The side-lying position is usually the most comfortable because this position imposes the least pressure on the surgical site. The Fowler position, Trendelenburg position, and reverse Trendelenburg position are inappropriate for this client because they would result in increased pain and complications. (PTS:1 REF:p.2122)"
+        },
+        {
+            id: 17,
+            question: "17. A client with amyotrophic lateral sclerosis (ALS) is being visited by the home health nurse who is creating a care plan. Which of the following nursing diagnoses is most likely for a client with this condition?",
+            options: [
+                "A. Chronic confusion",
+                "B. Impaired urinary elimination",
+                "C. Impaired verbal communication",
+                "D. Bowel incontinence"
+            ],
+            correct: 2, // C
+            rationale: "Impaired communication is an appropriate nursing diagnosis; the voice in clients with ALS assumes a nasal sound and articulation becomes so disrupted that speech is unintelligible. Intellectual function is marginally impaired in clients with late ALS. Usually, the anal and bladder sphincters are intact because the spinal nerves that control muscles of the rectum and urinary bladder are not affected. (PTS:1 REF:p.2132)"
+        },
+        {
+            id: 18,
+            question: "18. The nurse is caring for a client with a brain tumor who is experiencing symptoms due to compression and infiltration of normal tissue. The pathophysiologic changes that result can cause what manifestations? Select all that apply.",
+            options: [
+                "A. Intracranial hemorrhage",
+                "B. Infection of cerebrospinal fluid",
+                "C. Increased ICP",
+                "D. Focal neurologic signs",
+                "E. Altered pituitary function"
+            ],
+            correct: [2,3,4], // C, D, E
+            rationale: "The effects of neoplasms are caused by the compression and infiltration of tissue. A variety of physiologic changes result, causing any or all of the following pathophysiologic events: increased ICP and cerebral edema, seizure activity and focal neurologic signs, hydrocephalus, and altered pituitary function. (PTS:1 REF:p.2113)"
+        },
+        {
+            id: 19,
+            question: "19. The nurse is caring for a client newly diagnosed with a primary brain tumor. The client asks the nurse where the tumor came from. What would be the nurse's best response?",
+            options: [
+                "A. 'Your tumor originated from somewhere outside the CNS.'",
+                "B. 'Your tumor likely started out in one of your glands.'",
+                "C. 'Your tumor originated from cells within your brain itself.'",
+                "D. 'Your tumor is from nerve tissue somewhere in your body.'"
+            ],
+            correct: 2, // C
+            rationale: "Primary brain tumors originate from cells and structures within the brain. Secondary brain tumors are metastatic tumors that originate somewhere else in the body. The scenario does not indicate that the client's tumor is a pituitary tumor or a neuroma. (PTS:1 REF:p.2113)"
+        },
+        {
+            id: 20,
+            question: "20. A gerontologic nurse is advocating for diagnostic testing of an 81-year-old client who is experiencing personality changes. The nurse is aware of what factor that is known to affect the diagnosis and treatment of brain tumors in older adults?",
+            options: [
+                "A. The effects of brain tumors are often attributed to the cognitive effects of aging.",
+                "B. Brain tumors in older adults do not normally produce focal effects.",
+                "C. Older adults typically have numerous benign brain tumors by the eighth decade of life.",
+                "D. Brain tumors cannot normally be treated in clients over age 75."
+            ],
+            correct: 0, // A
+            rationale: "In older adult clients, early signs and symptoms of intracranial tumors can be easily overlooked or incorrectly attributed to cognitive and neurologic changes associated with normal aging. Brain tumors are not normally benign and they produce focal effects in all clients. Treatment options are not dependent primarily on age. (PTS:1 REF:p.2114)"
+        },
+        {
+            id: 21,
+            question: "21. A client who has been experiencing numerous episodes of unexplained headaches and vomiting has subsequently been referred for testing to rule out a brain tumor. What characteristic of the client's vomiting is most consistent with a brain tumor?",
+            options: [
+                "A. The client's vomiting is accompanied by epistaxis.",
+                "B. The client's vomiting does not relieve his nausea.",
+                "C. The client's vomiting is unrelated to food intake.",
+                "D. The client's emesis is blood-tinged."
+            ],
+            correct: 2, // C
+            rationale: "Vomiting is often unrelated to food intake if caused by a brain tumor. The presence or absence of blood is not related to the possible etiology and vomiting may or may not relieve the client's nausea. (PTS:1 REF:p.2114)"
+        },
+        {
+            id: 22,
+            question: "22. A male client presents at the free clinic with reports of erectile dysfunction. Upon physical examination, the nurse practitioner notes the presence of hypogonadism. What diagnosis should the nurse suspect?",
+            options: [
+                "A. Prolactinoma",
+                "B. Angioma",
+                "C. Glioma",
+                "D. Adrenocorticotropic hormone (ACTH)--producing adenoma"
+            ],
+            correct: 0, // A
+            rationale: "Male clients with prolactinomas may present with impotence and hypogonadism. An ACTH-producing adenoma would cause acromegaly. The scenario contains insufficient information to know if the tumor is an angioma, glioma, or neuroma. (PTS:1 REF:p.2114)"
+        },
+        {
+            id: 23,
+            question: "23. The nurse is planning the care of a client who has been recently diagnosed with a cerebellar tumor. Due to the location of this client's tumor, the nurse should implement measures to prevent what complication?",
+            options: [
+                "A. Falls",
+                "B. Audio hallucinations",
+                "C. Respiratory depression",
+                "D. Labile BP"
+            ],
+            correct: 0, // A
+            rationale: "A cerebellar tumor causes dizziness, an ataxic or staggering gait with a tendency to fall toward the side of the lesion, and marked muscle incoordination. Because of this, the client faces a high risk of falls. Hallucinations and unstable vital signs are not closely associated with cerebellar tumors. (PTS:1 REF:p.2116)"
+        },
+        {
+            id: 24,
+            question: "24. A client has been admitted to the neurologic ICU with a diagnosis of a brain tumor. The client is scheduled to have a tumor resection/removal in the morning. Which of the following assessment parameters should the nurse include in the initial assessment?",
+            options: [
+                "A. Gag reflex",
+                "B. Deep tendon reflexes",
+                "C. Abdominal girth",
+                "D. Hearing acuity"
+            ],
+            correct: 0, // A
+            rationale: "Preoperatively, the gag reflex and ability to swallow are evaluated. In clients with diminished gag response, care includes teaching the client to direct food and fluids toward the unaffected side, having the client sit upright to eat, offering a semisoft diet, and having suction readily available. Deep tendon reflexes, abdominal girth, and hearing acuity are less commonly affected by brain tumors and do not affect the risk for aspiration. (PTS:1 REF:p.2118)"
+        },
+        {
+            id: 25,
+            question: "25. A client with a brain tumor has begun to exhibit signs of cachexia. What subsequent assessment should the nurse prioritize?",
+            options: [
+                "A. Assessment of peripheral nervous function",
+                "B. Assessment of cranial nerve function",
+                "C. Assessment of nutritional status",
+                "D. Assessment of respiratory status"
+            ],
+            correct: 2, // C
+            rationale: "Cachexia is a wasting syndrome of weight loss, muscle atrophy, fatigue, weakness, and significant loss of appetite. Consequently, nutritional assessment is paramount. (PTS:1 REF:p.2118)"
+        },
+        {
+            id: 26,
+            question: "26. A client with an inoperable brain tumor has been told that the client has a short life expectancy. On what aspects of assessment and care should the home health nurse focus? Select all that apply.",
+            options: [
+                "A. Pain control",
+                "B. Management of treatment complications",
+                "C. Interpretation of diagnostic tests",
+                "D. Assistance with self-care",
+                "E. Administration of treatments"
+            ],
+            correct: [0,1,3,4], // A, B, D, E
+            rationale: "Home care needs and interventions focus on four major areas: palliation of symptoms and pain control, assistance in self-care, control of treatment complications, and administration of specific forms of treatment, such as parenteral nutrition. Interpretation of diagnostic tests is normally beyond the purview of the nurse. (PTS:1 REF:p.2120)"
+        },
+        {
+            id: 27,
+            question: "27. An older adult has encouraged the spouse husband to visit their primary provider, stating that concern that spouse may have Parkinson disease. Which description of the spouse's health and function is most suggestive of Parkinson disease?",
+            options: [
+                "A. 'Lately he seems to move far more slowly than he ever has in the past.'",
+                "B. 'He often complains that his joints are terribly stiff when he wakes up in the morning.'",
+                "C. 'He's forgotten the names of some people that we've known for years.'",
+                "D. 'He's losing weight even though he has a ravenous appetite.'"
+            ],
+            correct: 0, // A
+            rationale: "Parkinson disease is characterized by bradykinesia. It does not manifest as memory loss, increased appetite, or joint stiffness. (PTS:1 REF:p.2123)"
+        },
+        {
+            id: 28,
+            question: "28. A client, brought to the clinic by the client's spouse and son, is diagnosed with Huntington disease. When providing anticipatory guidance, the nurse should address the future possibility of what effect of Huntington disease?",
+            options: [
+                "A. Metastasis",
+                "B. Risk for stroke",
+                "C. Emotional and personality changes",
+                "D. Pathologic bone fractures"
+            ],
+            correct: 2, // C
+            rationale: "Huntington disease causes profound changes to personality and behavior. It is a nonmalignant disease and stroke is not a central risk. The disease is not associated with pathologic bone fractures. (PTS:1 REF:p.2129)"
+        },
+        {
+            id: 29,
+            question: "29. The nurse caring for a client diagnosed with Parkinson disease has helped prepare a plan of care that would include which goal?",
+            options: [
+                "A. Promoting effective communication",
+                "B. Controlling diarrhea",
+                "C. Preventing optic nerve damage",
+                "D. Managing choreiform movements"
+            ],
+            correct: 0, // A
+            rationale: "The goals for the client may include improving functional mobility, maintaining independence in ADLs, achieving adequate bowel elimination, attaining and maintaining acceptable nutritional status, achieving effective communication, and developing positive coping mechanisms. Constipation would be more likely than diarrhea. Parkinson disease does not affect the optic nerve. Choreiform movements are related to Huntington disease. (PTS:1 REF:p.2126)"
+        },
+        {
+            id: 30,
+            question: "30. A client with Parkinson disease is experiencing episodes of constipation that are becoming increasingly frequent and severe. The client reports achieving relief for the past few weeks by using over-the-counter laxatives. How should the nurse respond?",
+            options: [
+                "A. 'It's important to drink plenty of fluids while you're taking laxatives.'",
+                "B. 'Make sure that you supplement your laxatives with a nutritious diet.'",
+                "C. 'Let's explore other options, because laxatives can have side effects and create dependency.'",
+                "D. 'You should ideally be using herbal remedies rather than medications to promote bowel function.'"
+            ],
+            correct: 2, // C
+            rationale: "Laxatives should be avoided in clients with Parkinson disease due to the risk of adverse effects and dependence. Herbal bowel remedies are not necessarily less risky. (PTS:1 REF:p.2127)"
+        },
+        {
+            id: 31,
+            question: "31. A family member of a client diagnosed with Huntington disease calls the clinic. The family member is requesting help from the Huntington Disease Society of America. What kind of help can this client and family receive from this organization? Select all that apply.",
+            options: [
+                "A. Information about this disease",
+                "B. Referrals",
+                "C. Public education",
+                "D. Individual assessments",
+                "E. Appraisals of research studies"
+            ],
+            correct: [0,1,2], // A, B, C
+            rationale: "The Huntington Disease Society of America helps clients and families by providing information, referrals, family and public education, and support for research. It does not provide individual assessments or appraisals of individual research studies. (PTS:1 REF:p.2131)"
+        },
+        {
+            id: 32,
+            question: "32. A client with a new diagnosis of amyotrophic lateral sclerosis (ALS) is overwhelmed by the diagnosis and the known complications of the disease. How can the client best make known their wishes for care as the disease progresses?",
+            options: [
+                "A. Prepare an advance directive.",
+                "B. Designate a most responsible health care provider (MRP) early in the course of the disease.",
+                "C. Collaborate with representatives from the Amyotrophic Lateral Sclerosis Association.",
+                "D. Ensure that witnesses are present when he provides instruction."
+            ],
+            correct: 0, // A
+            rationale: "Clients with ALS are encouraged to complete an advance directive or 'living will' to preserve their autonomy in decision making. None of the other listed actions constitutes a legally binding statement of end-of-life care. (PTS:1 REF:p.2132)"
+        },
+        {
+            id: 33,
+            question: "33. The nurse is caring for a client who is scheduled for a cervical discectomy the following day. During health education, the client should be made aware of what potential complications?",
+            options: [
+                "A. Vertebral fracture",
+                "B. Hematoma at the surgical site",
+                "C. Scoliosis",
+                "D. Renal trauma"
+            ],
+            correct: 1, // B
+            rationale: "Based on all the assessment data, the potential complications of discectomy may include hematoma at the surgical site, resulting in cord compression and neurologic deficit and recurrent or persistent pain after surgery. Renal trauma and fractures are unlikely; scoliosis is a congenital malformation of the spine. (PTS:1 REF:p.2135)"
+        },
+        {
+            id: 34,
+            question: "34. A nurse is planning discharge education for a client who underwent a cervical discectomy. What strategies would the nurse assess that would aid in planning discharge teaching?",
+            options: [
+                "A. Care of the cervical collar",
+                "B. Technique for performing neck ROM exercises",
+                "C. Home assessment of ABGs",
+                "D. Techniques for restoring nerve function"
+            ],
+            correct: 0, // A
+            rationale: "Prior to discharge, the nurse should assess the client's use and care of the cervical collar. Neck ROM exercises would be contraindicated and ABGs cannot be assessed in the home. Nerve function is not compromised by a discectomy. (PTS:1 REF:p.2136)"
+        },
+        {
+            id: 35,
+            question: "35. A nurse is reading a journal article about brain tumors and the various types that can occur. The nurse demonstrates understanding of the article by identifying which type as being classified as an intracerebral tumor? Select all that apply.",
+            options: [
+                "A. meningioma",
+                "B. schwannoma",
+                "C. glioblastoma",
+                "D. astrocytoma",
+                "E. medulloblastoma"
+            ],
+            correct: [2,3,4], // C, D, E
+            rationale: "Intracerebral tumors include glioblastomas, astrocytomas, and medulloblastomas. Meningiomas and schwannomas are tumors that arise from supporting structures. (PTS:1 REF:p.2113)"
+        },
+        {
+            id: 36,
+            question: "36. A client is diagnosed with an acoustic neuroma. When assessing this client, which manifestation would the nurse expect to find? Select all that apply.",
+            options: [
+                "A. tinnitus",
+                "B. vertigo",
+                "C. staggering gait",
+                "D. seizures",
+                "E. headache"
+            ],
+            correct: [0,1,2], // A, B, C
+            rationale: "An acoustic neuroma is a slow-growing tumor and attains considerable size before it is correctly diagnosed. The client usually experiences loss of hearing, tinnitus, episodes of vertigo, and staggering gait. As the tumor becomes larger, painful sensations of the face may occur on the same side. Headaches and seizures are more common with other types of brain tumors. (PTS:1 REF:p.2114)"
+        },
+        {
+            id: 37,
+            question: "37. A female client is admitted to the medical unit for evaluation of cerebral metastasis from a primary site. When reviewing the client's history, the nurse would most likely find which site as being the primary site?",
+            options: [
+                "A. lung",
+                "B. prostate",
+                "C. renal",
+                "D. uterus"
+            ],
+            correct: 0, // A
+            rationale: "Primary sites of cancer that commonly metastasize to the brain include the lung, breast, and gastrointestinal tract as well as melanoma. Primary lung cancer accounts for 50% of all brain metastases. (PTS:1 REF:p.2121)"
+        },
+        {
+            id: 38,
+            question: "38. A nurse is conducting an assessment of a client who is suspected of having a brain tumor. Assessment reveals reports of a headache, for which the nurse gathers additional information. The nurse determines that these reports support the suspicion of a brain tumor when the client reports that the headache occurs:",
+            options: [
+                "A. early in the morning.",
+                "B. around lunchtime.",
+                "C. in the middle of the afternoon.",
+                "D. at bedtime."
+            ],
+            correct: 0, // A
+            rationale: "Headache, although not always present, is most common in the early morning and improves during the day. Pain is made worse by coughing, straining, or sudden movement. Headache is thought to be caused by the tumor invading, compressing, or distorting the pain-sensitive structures, or by edema that accompanies the tumor. (PTS:1 REF:p.2115)"
+        },
+        {
+            id: 39,
+            question: "39. A client is exhibiting late signs of increased intracranial pressure. Which finding would the nurse most likely assess? Select all that apply.",
+            options: [
+                "A. Hypertension",
+                "B. Bradycardia",
+                "C. Respiratory depression",
+                "D. Headache",
+                "E. Papilledema"
+            ],
+            correct: [0,1,2], // A, B, C
+            rationale: "Late signs associated with rising ICP related to the vital signs are termed Cushing triad; those signs may include hypertension with a widening pulse pressure (the difference between systolic and diastolic pressure), bradycardia, and respiratory depression. Symptoms of rising ICP such as headache, nausea with or without vomiting, papilledema (edema of the optic disk), and visual changes occur earlier. (PTS:1 REF:p.2114)"
+        }
+    ];
+
+    let currentQuestion = 0;
+    let selectedOption = null;
+    let answers = Array(questions.length).fill(null);
+
+    function loadQuestion() {
+        const q = questions[currentQuestion];
+        if (!q) return;
+
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+        document.getElementById('counter').textContent = `${currentQuestion + 1}/${questions.length}`;
+        document.getElementById('questionNumber').textContent = q.id;
+
+        document.getElementById('question').innerHTML = q.question;
+        loadOptions(q);
+
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+
+        document.getElementById('prevBtn').disabled = currentQuestion === 0;
+        const stored = answers[q.id - 1];
+        document.getElementById('nextBtn').disabled = stored === null || stored === undefined;
+        document.getElementById('nextBtn').textContent = currentQuestion >= questions.length - 1 ? 'Finish ➡️' : 'Next ➡️';
+    }
+
+    function loadOptions(q) {
+        const container = document.getElementById('options');
+        container.innerHTML = '';
+        q.options.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.innerHTML = `<div class="option-letter">${String.fromCharCode(65 + idx)}</div><div>${opt}</div>`;
+            div.onclick = () => selectOption(idx);
+            container.appendChild(div);
+        });
+
+        const saved = answers[q.id - 1];
+        if (saved !== null && saved !== undefined) {
+            selectOption(saved, true);
+        }
+    }
+
+    function selectOption(index, fromMemory = false) {
+        const q = questions[currentQuestion];
+        if (!fromMemory && selectedOption !== null) return;
+
+        if (!fromMemory) {
+            selectedOption = index;
+            answers[q.id - 1] = index;
+        }
+
+        highlightSelected(index, q);
+        showFeedback(index, q);
+        document.getElementById('nextBtn').disabled = false;
+        document.getElementById('cancelBtn').classList.add('show');
+    }
+
+    function highlightSelected(index, q) {
+        const opts = document.querySelectorAll('.option');
+        opts.forEach((opt, i) => opt.classList.remove('correct', 'incorrect'));
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        if (Array.isArray(q.correct)) {
+            correctIndices.forEach(ci => opts[ci]?.classList.add('correct'));
+            if (!correctIndices.includes(index)) {
+                opts[index]?.classList.add('incorrect');
+            }
+        } else {
+            if (index === q.correct) {
+                opts[index].classList.add('correct');
+            } else {
+                opts[index].classList.add('incorrect');
+                opts[q.correct].classList.add('correct');
+            }
+        }
+    }
+
+    function showFeedback(index, q) {
+        const fb = document.getElementById('feedback');
+        const icon = document.getElementById('feedbackIcon');
+        const text = document.getElementById('feedbackText');
+        const rationaleDiv = document.getElementById('rationale');
+        const rationaleP = document.getElementById('rationaleText');
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        const isCorrect = correctIndices.includes(index);
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            icon.textContent = '✅';
+            text.textContent = 'CORRECT! Well done.';
+        } else {
+            fb.className = 'feedback incorrect';
+            icon.textContent = '❌';
+            const letters = correctIndices.map(c => String.fromCharCode(65 + c)).join(', ');
+            text.textContent = `INCORRECT. The correct answer(s): ${letters}`;
+        }
+
+        fb.style.display = 'flex';
+        rationaleP.innerHTML = q.rationale;
+        rationaleDiv.classList.add('show');
+    }
+
+    function cancelSelection() {
+        const q = questions[currentQuestion];
+        selectedOption = null;
+        answers[q.id - 1] = null;
+        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct', 'incorrect'));
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+        document.getElementById('nextBtn').disabled = true;
+    }
+
+    function nextCard() {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            selectedOption = null;
+            loadQuestion();
+        } else {
+            currentQuestion = 0;
+            loadQuestion();
+        }
+    }
+
+    function previousCard() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            const q = questions[currentQuestion];
+            selectedOption = answers[q.id - 1];
+            loadQuestion();
+        }
+    }
+
+    // keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key >= '1' && e.key <= '4') selectOption(parseInt(e.key)-1);
+        else if (e.key >= 'a' && e.key <= 'd') selectOption(e.key.charCodeAt(0)-97);
+        else if (e.key >= 'A' && e.key <= 'D') selectOption(e.key.charCodeAt(0)-65);
+        else if (e.key === 'ArrowLeft' && !document.getElementById('prevBtn').disabled) previousCard();
+        else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) nextCard();
+        else if (e.key === 'Escape' && document.getElementById('cancelBtn').classList.contains('show')) cancelSelection();
+    });
+
+    loadQuestion();
+</script>
+</body>
+</html>
